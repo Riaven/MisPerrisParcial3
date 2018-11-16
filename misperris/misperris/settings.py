@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'apps.rescatado',
     'apps.adopcion',
     'materializecssform',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -53,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
 ROOT_URLCONF = 'misperris.urls'
@@ -68,6 +70,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
+           
             ],
         },
     },
@@ -119,6 +125,11 @@ USE_L10N = True
 
 USE_TZ = True
 
+#Para utilizar la api
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.facebook.Facebook0Auth2',
+    'django.contrib.auth.backends.ModelBackend',
+)
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
@@ -132,6 +143,10 @@ LOGIN_REDIRECT_URL = reverse_lazy('rescatado_listar')
 LOGOUT_REDIRECT_URL = reverse_lazy('index')
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+
+SOCIAL_AUTH_FACEBOOK_KEY = '145464129474916'
+SOCIAL_AUTH_FACEBOOK_SECRET = 'clave-secreta-de-la-aplicación'
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
