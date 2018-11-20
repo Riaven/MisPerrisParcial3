@@ -125,11 +125,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-#Para utilizar la api
-AUTHENTICATION_BACKENDS = (
-    'social_core.backends.facebook.Facebook0Auth2',
-    'django.contrib.auth.backends.ModelBackend',
-)
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
