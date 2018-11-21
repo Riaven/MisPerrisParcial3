@@ -42,8 +42,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'apps.rescatado',
     'apps.adopcion',
+    'apps.usuario',
     'materializecssform',
     'social_django',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

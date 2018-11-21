@@ -1,10 +1,12 @@
 from django.conf.urls import url, include
-from apps.usuario.views import RegistroUsuario, UserAPI
+from django.urls import path
+from apps.usuario.views import RegistroUsuario, UserList, UserDetail
 from django.contrib.auth.views import LoginView, logout_then_login, PasswordResetView, PasswordResetDoneView, PasswordResetConfirmView, PasswordResetCompleteView
 
 urlpatterns = [
     url(r'^registrar', RegistroUsuario.as_view(), name='registrar'),
-    url(r'^api', UserAPI.as_view(), name='api'),
+    path('', UserList.as_view()),
+    path('<int:pk>/',UserDetail.as_view()),
 
     
     url(r'^reset/password_reset', PasswordResetView.as_view(), 

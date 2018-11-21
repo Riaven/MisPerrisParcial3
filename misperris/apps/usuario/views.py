@@ -6,7 +6,7 @@ from apps.usuario.forms import RegistroUsuario
 
 import json 
 from django.http import HttpResponse
-from rest_framework.views import APIView
+from rest_framework import generics
 from apps.usuario.serializers import UserSerializer
 class RegistroUsuario(CreateView):
     model = User
@@ -14,11 +14,11 @@ class RegistroUsuario(CreateView):
     form_class = RegistroUsuario
     success_url = reverse_lazy('rescatado_listar')
 
-class UserAPI(APIView):
-    serializer = UserSerializer
+class UserList(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
-    def get(self, request, format=None):
-        lista = User.objects.all()
-        response = self.serializer(lista, many=True)
 
-        return HttpResponse(json.dumps(response.data), content_type='application/json')
+class UserDetail(generics.RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
