@@ -1,38 +1,44 @@
 {% load staticfiles %}
 {% load materializecss %}
 
+
 <!DOCTYPE html>
 <html lang="es">
+{% load pwa %}
+
 <head>
+	{% progressive_web_app_meta %}
 	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	<!--Import materialize.css-->
-	<link type="text/css" rel="stylesheet" href="{% static 'css/materialize.min.css' %}"  media="screen,projection"/>
+	
 
 	<!--Let browser know website is optimized for mobile-->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 	<meta charset="utf-8">
 
-	<link rel="stylesheet"  href="{% static 'css/estilos.css' %}">
+	<link rel="stylesheet" href="{% static 'css/estilos.css' %}">
 
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js">
 	</script>
-    
+
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
 	{% block css %}
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/css/materialize.min.css" integrity="sha256-qj3p6P1fJIV+Ndv7RW1ovZI2UhOuboj9GcODzcNFIN8=" crossorigin="anonymous" />
-{% endblock css %}
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/css/materialize.min.css"
+	 integrity="sha256-qj3p6P1fJIV+Ndv7RW1ovZI2UhOuboj9GcODzcNFIN8=" crossorigin="anonymous" />
+	{% endblock css %}
 
 
 
 	<title> {% block title %} MIS PERRIS {% endblock %}</title>
 </head>
+
 <body>
 
 
-    {% block header %}
+	{% block header %}
 	<nav id="principal">
 
 		<div class="nav-wrapper">
@@ -55,64 +61,63 @@
 				{% if user.is_authenticated %}
 				<li><a href="{% url 'rescatado_listar' %}">Lista de Mascotas</a></li>
 				<li><a href="{% url 'logout' %}">Cerrar sesión
-					<i class="material-icons right">power_settings_new</i>
-				</a></li>
+						<i class="material-icons right">power_settings_new</i>
+					</a></li>
 				{% endif %}
-				
+
 			</ul>
 		</div>
 
 		<ul class="sidenav" id="mobile-demo">
 			{% if user.is_authenticated %}
-				<li>Bienvenido {{request.user.username}} --</li>
-				{% endif %}
-				<li><a href="{% url 'index' %}">Inicio</a></li>
-				<li><a href="{% url 'somos' %}">Quiénes somos</a></li>
-				<li><a href="{% url 'servicios' %}">Servicios</a></li>
-				<li><a href="{% url 'contactanos' %}">Contáctanos</a></li>
-				{% if user.is_authenticated == False%}
-				<li><a href="{% url 'registrar' %}">Registrarse</a></li>
-				<li><a href="{% url 'login' %}">Inicar sesión</a></li>
-				{% endif %}
-				{% if user.is_authenticated %}
-				<li><a href="{% url 'rescatado_listar' %}">Lista de Mascotas</a></li>
-				<li><a href="{% url 'logout' %}">Cerrar sesión
+			<li>Bienvenido {{request.user.username}} --</li>
+			{% endif %}
+			<li><a href="{% url 'index' %}">Inicio</a></li>
+			<li><a href="{% url 'somos' %}">Quiénes somos</a></li>
+			<li><a href="{% url 'servicios' %}">Servicios</a></li>
+			<li><a href="{% url 'contactanos' %}">Contáctanos</a></li>
+			{% if user.is_authenticated == False%}
+			<li><a href="{% url 'registrar' %}">Registrarse</a></li>
+			<li><a href="{% url 'login' %}">Inicar sesión</a></li>
+			{% endif %}
+			{% if user.is_authenticated %}
+			<li><a href="{% url 'rescatado_listar' %}">Lista de Mascotas</a></li>
+			<li><a href="{% url 'logout' %}">Cerrar sesión
 					<i class="material-icons right">power_settings_new</i>
 				</a></li>
-				{% endif %}
-				
+			{% endif %}
+
 		</ul>
-		
+
 
 	</nav>
-    {% endblock %}
-	
+	{% endblock %}
+
 	{% block javascript %}
-<script
-src="https://code.jquery.com/jquery-3.3.1.min.js"
-integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-crossorigin="anonymous"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+	 crossorigin="anonymous"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/js/materialize.min.js" integrity="sha256-SrBfGi+Zp2LhAvy9M1bWOCXztRU9Ztztxmu5BcYPcPE=" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.1/js/materialize.min.js" integrity="sha256-SrBfGi+Zp2LhAvy9M1bWOCXztRU9Ztztxmu5BcYPcPE="
+	 crossorigin="anonymous"></script>
 
-<script>
-$(document).ready(function(){
+	<script>
+		$(document).ready(function () {
 
-// Initialize materialize data picker
-$('.datepicker').datepicker({'format': 'yyyy-mm-dd'});
-$('select').formSelect();
+			// Initialize materialize data picker
+			$('.datepicker').datepicker({ 'format': 'yyyy-mm-dd' });
+			$('select').formSelect();
 
-});
+		});
 
-</script>
+	</script>
 
-{% endblock javascript %}
-	
-    {% block content%}
-    <h1>Prueba</h1>
-    {% endblock %}
+	{% endblock javascript %}
 
-    {% block footer %}
+	{% block content%}
+	<h1>Prueba</h1>
+	{% endblock %}
+
+	{% block footer %}
 
 	<footer>
 		<br>
@@ -121,13 +126,14 @@ $('select').formSelect();
 
 	</footer>
 
-    {% endblock %}
+	{% endblock %}
 
 	<!--JavaScript at end of body for optimized loading-->
 	<script type="text/javascript" src="js/materialize.min.js"></script>
-    <script src="{% static 'js/script.js' %}"></script>
+	<script src="{% static 'js/script.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/materialize.min.js' %}"></script>
 	<script type="text/javascript" src="{% static 'js/materialize.js' %}"></script>
-	
+
 </body>
+
 </html>
