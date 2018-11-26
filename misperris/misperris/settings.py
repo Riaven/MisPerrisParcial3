@@ -46,7 +46,6 @@ INSTALLED_APPS = [
     'apps.adopcion',
     'apps.usuario',
     'materializecssform',
-    'social_django',
     'rest_framework',
     'pwa',
 ]

@@ -5,7 +5,7 @@ from django.contrib.auth.views import LoginView, logout_then_login, PasswordRese
 
 urlpatterns = [
     url(r'^registrar', RegistroUsuario.as_view(), name='registrar'),
-    path('', UserList.as_view()),
+    path('api', UserList.as_view()),
     path('<int:pk>/',UserDetail.as_view()),
 
     

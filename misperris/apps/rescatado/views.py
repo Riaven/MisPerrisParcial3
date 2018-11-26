@@ -5,6 +5,7 @@ from django.urls import reverse_lazy
 from apps.rescatado.forms import RescatadoForm
 from apps.rescatado.models import Rescatado
 from django.contrib.auth.decorators import login_required
+from django.core import serializers
 
 # Create your views here.
 
@@ -78,3 +79,9 @@ def rescatado_delete(request, id_rescatado):
         return render(request,'rescatado/rescatado_delete.html', {'rescatado':rescatado})
     else:
         return HttpResponseNotFound('<h1>Página no encontrada o no tienes los suficientes permisos para entrar a ella :(</h1>')
+
+
+def getdata(request):
+	results=Rescatado.objects.all()
+	jsondata = serializers.serialize('json',results)
+	return HttpResponse(jsondata)

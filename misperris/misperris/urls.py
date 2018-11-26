@@ -25,6 +25,6 @@ urlpatterns = [
     url(r'^usuario/', include('apps.usuario.urls')),
     url(r'^accounts/login/', LoginView.as_view(), name='login'),
     url(r'^logout/', logout_then_login, name='logout'),
-    path('api/', include('apps.usuario.urls')),
     path('', include('pwa.urls')),
+    
 ]   
