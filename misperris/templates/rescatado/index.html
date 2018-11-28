@@ -2,6 +2,7 @@
 {% load staticfiles %}
 {% load materializecss %}
 {% block content %}
+{% csrf_token %}
 <div class="slider">
     <ul class="slides">
         <li>
@@ -74,7 +75,8 @@
             realizamos para obtener financiamiento para seguir ayudando.</h6>
         <br>
         <a href="#" class="waves-effect waves-teal btn-flat" id="btncam">Campañas</a>
-
+       
+        
 
         
 

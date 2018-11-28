@@ -46,8 +46,14 @@ INSTALLED_APPS = [
     'apps.adopcion',
     'apps.usuario',
     'materializecssform',
+    # para agregar django rest 
     'rest_framework',
+    # para lograr hacer una app progresiva
     'pwa',
+    # para conectar con Redes sociales
+    'social_django',
+    # para agregar protocolo https
+    'sslserver',
 ]
 
 MIDDLEWARE = [
@@ -58,6 +64,9 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+
+    # Para django social, conectar con Redes sociales
     'social_django.middleware.SocialAuthExceptionMiddleware',
 ]
 
@@ -75,6 +84,7 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
 
+                # Para django social, para conectar con Redes sociales
                 'social_django.context_processors.backends',
                 'social_django.context_processors.login_redirect',
            
@@ -115,7 +125,16 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+AUTHENTICATION_BACKENDS = (
+    # para loguearse con github
+    'social_core.backends.github.GithubOAuth2',
+    # para loguearse con Twitter
+    'social_core.backends.twitter.TwitterOAuth',
+    # para loguearse con Facebook
+    'social_core.backends.facebook.FacebookOAuth2',
 
+    'django.contrib.auth.backends.ModelBackend',
+)
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -144,9 +163,22 @@ LOGOUT_REDIRECT_URL = reverse_lazy('index')
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+###########################################################################################
+# datos privados de app facebook                                                          
+SOCIAL_AUTH_FACEBOOK_KEY = '294444797838200'
+SOCIAL_AUTH_FACEBOOK_SECRET = '6153e7107b8603b46a963720a1ace229'
 
-SOCIAL_AUTH_FACEBOOK_KEY = '2225161044471362'
-SOCIAL_AUTH_FACEBOOK_SECRET = 'c3f45bc5bf2ca50e5d0e1046330e192a'
+# datos privados para iniciar con twitter NO FUNCIONA
+SOCIAL_AUTH_TWITTER_KEY = 'iRGYqmIfscuzE3SKb6fZyqZMM'
+SOCIAL_AUTH_TWITTER_SECRET = 'pg3jcbi9Le20ib5i0V3Xw8s9MAKbiNrj4PuVnCEc7rhvNhzE4Y'
+
+# datos privados para iniciar con github
+SOCIAL_AUTH_GITHUB_KEY = '886b93715759bc639333'
+SOCIAL_AUTH_GITHUB_SECRET = 'affcc6de533955080c3e8576f3e521a39b52ee99'
+
+###########################################################################################
+
+
 
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'

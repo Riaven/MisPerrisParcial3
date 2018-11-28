@@ -26,5 +26,7 @@ urlpatterns = [
     url(r'^accounts/login/', LoginView.as_view(), name='login'),
     url(r'^logout/', logout_then_login, name='logout'),
     path('', include('pwa.urls')),
+    # para django social
+    url(r'^oauth/', include('social_django.urls', namespace='social')),
     
 ]   
