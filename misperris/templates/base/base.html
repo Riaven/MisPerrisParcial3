@@ -56,7 +56,7 @@
 				<li><a href="{% url 'contactanos' %}">Contáctanos</a></li>
 				{% if user.is_authenticated == False%}
 				<li><a href="{% url 'registrar' %}">Registrarse</a></li>
-				<li><a href="{% url 'login' %}">Inicar sesión</a></li>
+				<li><a href="{% url 'login' %}">Iniciar sesión</a></li>
 				{% endif %}
 				{% if user.is_authenticated %}
 				<li><a href="{% url 'rescatado_listar' %}">Lista de Mascotas</a></li>
@@ -78,7 +78,7 @@
 			<li><a href="{% url 'contactanos' %}">Contáctanos</a></li>
 			{% if user.is_authenticated == False%}
 			<li><a href="{% url 'registrar' %}">Registrarse</a></li>
-			<li><a href="{% url 'login' %}">Inicar sesión</a></li>
+			<li><a href="{% url 'login' %}">Iniciar sesión</a></li>
 			{% endif %}
 			{% if user.is_authenticated %}
 			<li><a href="{% url 'rescatado_listar' %}">Lista de Mascotas</a></li>
